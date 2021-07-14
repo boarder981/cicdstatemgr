@@ -46,7 +46,7 @@ spec:
     - apiVersion: tekton.dev/v1beta1
       kind: PipelineRun
       metadata:
-        name: start-$(tt.params.cicdContextName)-$(tt.params.gitAppName)-$(uid) # uid here is the tekton unique RUN id
+        name: start-$(uid) # uid here is the tekton unique RUN id
       spec:
         serviceAccountName: cicd-tekton
 
@@ -58,15 +58,15 @@ spec:
             value: $(tt.params.cicdContextName)
 
           - name: pipelineRunUid
-            value: start-$(tt.params.cicdContextName)-$(tt.params.gitAppName)-$(uid) # uid here is the tekton unique RUN id
+            value: start-$(uid) # uid here is the tekton unique RUN id
 
-          - name: relatedCicdContextDataId 
+          - name: relatedCicdContextDataId
             value: $(tt.params.relatedCicdContextDataId)
 
-          - name: relatedPipelineRunUid 
+          - name: relatedPipelineRunUid
             value: $(tt.params.relatedPipelineRunUid)
 
-          - name: relatedPipelineName 
+          - name: relatedPipelineName
             value: $(tt.params.relatedPipelineName)
 
           - name: invokerUid # the invoking user uid
@@ -88,7 +88,7 @@ spec:
             value: $(tt.params.triggeredByDescription)
 
           - name: originalRequestBody
-            value: $(tt.params.originalRequestBody) 
+            value: $(tt.params.originalRequestBody)
 
           - name: uniqueString
             value: $(tt.params.uniqueString)
@@ -159,7 +159,7 @@ spec:
     - name: cicdContextName
       value: $(extensions.targetCicdContextName)
 
-    - name: invokerUid 
+    - name: invokerUid
       value: "<@$(extensions.slackUserId)>"
 
     - name: gitAppName
@@ -207,7 +207,7 @@ spec:
     - name: cicdContextName
       value: $(extensions.targetCicdContextName)
 
-    - name: invokerUid 
+    - name: invokerUid
       value: "<@$(extensions.slackUserId)>"
 
     - name: gitAppName
